@@ -49,6 +49,7 @@ jobs:
             cd frontend
             npm install
             npm run build
+            exit 1
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
@@ -120,11 +121,7 @@ jobs:
             npm install
             npm audit fix --audit-level=critical --force
             npm audit fix --force
-            # exit 0
-      - slack/notify:
-           event: fail
-           template: basic_fail_1
-           mentions: "@EngineeringTeam"
+            exit 0
 
   scan-backend:
     docker:
@@ -141,10 +138,6 @@ jobs:
             npm audit fix --audit-level=critical --force
             npm audit fix --force
             npm audit --audit-level=critical
-      - slack/notify:
-           event: fail
-           template: basic_fail_1
-           mentions: "@EngineeringTeam"
 
 #   deploy-infrastructure:
 #     docker:
@@ -322,12 +315,8 @@ workflows:
           context:
             - slack-secrets
       - test-frontend:
-          context:
-            - slack-secrets
           requires: [build-frontend]
       - test-backend:
-          context:
-            - slack-secrets
           requires: [build-backend]
       - scan-backend:
           requires: [build-backend]
