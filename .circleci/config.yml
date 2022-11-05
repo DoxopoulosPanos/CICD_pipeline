@@ -172,9 +172,9 @@ jobs:
             ls
       - destroy-environment
       - persist_to_workspace:
-          root: ~/
+          root: .
           paths:
-            - ~/project/.circleci/ansible/inventory.txt
+            - project/.circleci/ansible/inventory.txt
       # Here's where you will add some code to rollback on failure      
 
 #   configure-infrastructure:
