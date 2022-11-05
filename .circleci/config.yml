@@ -108,6 +108,7 @@ jobs:
             cd frontend
             npm install
             npm audit fix --audit-level=critical
+            npm install --save-dev css-loader@6.7.1
             npm audit fix --force
             npm audit --audit-level=critical
 
