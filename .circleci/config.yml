@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  slack: circleci/slack@4.9.3
+  slack: circleci/slack@4.1
 
 commands:
   destroy-environment:
@@ -54,22 +54,8 @@ jobs:
           paths: [frontend/node_modules]
           key: frontend-build
       - slack/notify:
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*This is a text notification*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
           event: fail
+          template: basic_fail_1
 
   build-backend:
     docker:
@@ -88,22 +74,8 @@ jobs:
           paths: [backend/node_modules]
           key: backend-build
       - slack/notify:
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*This is a text notification*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
           event: fail
+          template: basic_fail_1
 
   test-frontend:
     docker:
