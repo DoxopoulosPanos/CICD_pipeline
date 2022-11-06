@@ -186,6 +186,10 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints: ["b2:f0:6b:23:e5:8d:9f:1d:70:bc:ad:9b:ca:1a:5e:f0"] 
+      - run:
+          name: get current path
+          command: |
+            pwd
       - attach_workspace:
           at: ~/
       - run:
