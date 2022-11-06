@@ -168,6 +168,10 @@ jobs:
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --filters "Name=tag:project,Values=udapeople" \
               --output text >> .circleci/ansible/inventory.txt
+      - run:
+          name: print inventory
+          command: |
+            cat .circleci/ansible/inventory.txt
       - destroy-environment
       - persist_to_workspace:
           root: .
@@ -184,6 +188,10 @@ jobs:
           fingerprints: ["b2:f0:6b:23:e5:8d:9f:1d:70:bc:ad:9b:ca:1a:5e:f0"] 
       - attach_workspace:
           at: ~/
+      - run:
+          name: print inventory
+          command: |
+            cat .circleci/ansible/inventory.txt
       - run:
           name: Install dependencies
           command: |
