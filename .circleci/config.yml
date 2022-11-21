@@ -237,8 +237,7 @@ jobs:
       - run:
           name: Install npm and node
           command: |
-            curl -sL https://rpm.nodesource.com/setup_10.x
-            yum install nodejs
+            curl -fsSL https://rpm.nodesource.com/setup_16.x | bash - && yum -y install nodejs
       - attach_workspace:
           at: ~/project
       - run:
