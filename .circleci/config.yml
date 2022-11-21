@@ -234,6 +234,10 @@ jobs:
           name: Install tar utility
           command: |
             yum install -y tar gzip
+      - run:
+          name: Install npm and node
+          command: |
+            yum install nodejs npm --enablerepo=epel
       - attach_workspace:
           at: ~/project
       - run:
