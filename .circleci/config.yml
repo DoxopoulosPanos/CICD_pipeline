@@ -190,10 +190,6 @@ jobs:
       - attach_workspace:
           at: ~/project
       - run:
-          name: Install dependencies
-          command: |
-            apk add --update ansible
-      - run:
           name: Configure server
           command: |
             cd .circleci/ansible
@@ -264,19 +260,15 @@ jobs:
                     
   deploy-backend:
     docker:
-      - image: ansible/ansible:default
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
       - add_ssh_keys:
           fingerprints: ["b2:f0:6b:23:e5:8d:9f:1d:70:bc:ad:9b:ca:1a:5e:f0"] 
       - run:
-          name: Install tar utility
-          command: |
-            yum install -y tar gzip
-      - run:
           name: Install npm and node
           command: |
-            curl -fsSL https://rpm.nodesource.com/setup_16.x | bash - && yum -y install nodejs
+            apk add --update nodejs npm
       - attach_workspace:
           at: ~/project
       - run:
