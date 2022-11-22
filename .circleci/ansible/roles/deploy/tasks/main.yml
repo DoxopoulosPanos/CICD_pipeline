@@ -1,9 +1,3 @@
 ---
-- name: "npm install"
-  command: npm install
-
-- name: "stop pm2"
-  command: pm2 stop default
-
 - name: "start pm2"
   command: pm2 start npm -- start
