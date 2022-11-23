@@ -1,8 +1,6 @@
 ---
 - name: "Untar backend"
   command: |
-    cd $HOME
-    pwd
     ls
     mkdir backend_unarchived
     cd backend_unarchived
@@ -11,7 +9,7 @@
 
 - name: "Run application with pm2"
   command: |
-    cd $HOME/backend_unarchived
+    cd backend_unarchived
     npm install
     pm2 stop default 
     pm2 start npm -- start
