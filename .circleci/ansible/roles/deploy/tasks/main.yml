@@ -14,10 +14,6 @@
     production: yes
     state: present
 
-- name: "stop pm2"
-  become: true
-  command: pm2 stop default
-
 - name: "start pm2"
   become: true
   command: pm2 start npm -- start
