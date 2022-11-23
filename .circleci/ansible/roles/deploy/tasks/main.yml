@@ -1,8 +1,11 @@
 ---
 - name: "Untar backend"
   command: |
-    mkdir ~/backend_unarchived
-    cd ~/backend_unarchived
+    cd ~
+    pwd
+    ls
+    mkdir backend_unarchived
+    cd backend_unarchived
     tar -tvf artifact.tar.gz
     ls
 
