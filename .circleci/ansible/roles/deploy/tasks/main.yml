@@ -4,7 +4,7 @@
 
 - name: "Unarchive backend"
   unarchive:
-    src: /root/project/artifact.tar.gz
+    src: $HOME/../../artifact.tar.gz
     dest: $HOME/backend_unarchived
     remote_src: yes
 
