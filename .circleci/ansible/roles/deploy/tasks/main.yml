@@ -2,18 +2,9 @@
 - name: "create a backend directory"
   shell: mkdir $HOME/backend_unarchived
 
-- name: "ls"
-  shell: ls
-
-- name: "ls 2"
-  shell: ls ../../
-
-- name: "ls 3"
-  shell: ls ../../../../
-
 - name: "Unarchive backend"
   unarchive:
-    src: ../../../../artifact.tar.gz
+    src: ../../artifact.tar.gz
     dest: $HOME/backend_unarchived
     remote_src: yes
 

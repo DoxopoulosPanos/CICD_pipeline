@@ -13,6 +13,8 @@ commands:
           name: Destroy environments
           when: on_fail
           command: |
+            find $PWD -type f | grep "artifact.tar.gz"
+            find $PWD -type f | grep "inventory.txt"
             aws cloudformation delete-stack --stack-name udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
             aws s3 rm s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
             aws cloudformation delete-stack --stack-name udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}
