@@ -3,19 +3,19 @@
   shell: mkdir $HOME/backend_unarchived
 
 - name: store the files in the $HOME/ directory in the 'out' variable
-    find:
-      paths: $HOME/
-    register: out
+  find:
+    paths: $HOME/
+  register: out
 
 - name: store the files in the / directory in the 'out' variable
-    find:
-      paths: /
-    register: out
+  find:
+    paths: /
+  register: out
 
 - name: store the files in the ../../ directory in the 'out' variable
-    find:
-      paths: ../../
-    register: out
+  find:
+    paths: ../../
+  register: out
 
 - name: "Unarchive backend"
   unarchive:
