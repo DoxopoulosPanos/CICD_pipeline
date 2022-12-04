@@ -186,7 +186,12 @@ jobs:
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --filters "Name=tag:project,Values=udapeople" \
               --output text >> .circleci/ansible/inventory.txt
-      - destroy-environment
+      - destroy-environment:
+          id: udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
+      - destroy-s3-bucket: 
+          id: s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}
+      - destroy-environment:
+          id: udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7} 
       - persist_to_workspace:
           root: ~/project
           paths:
@@ -277,7 +282,12 @@ jobs:
             npm run build
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
-      - destroy-environment     
+      - destroy-environment:
+          id: udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
+      - destroy-s3-bucket: 
+          id: s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}
+      - destroy-environment:
+          id: udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}    
                     
   deploy-backend:
     docker:
@@ -332,7 +342,12 @@ jobs:
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml
-      - destroy-environment  
+      - destroy-environment:
+          id: udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
+      - destroy-s3-bucket: 
+          id: s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}
+      - destroy-environment:
+          id: udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}  
 
   smoke-test:
     docker:
