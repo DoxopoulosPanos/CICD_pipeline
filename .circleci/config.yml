@@ -192,6 +192,8 @@ jobs:
           workflow_id: s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}
       - destroy-environment:
           workflow_id: udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7} 
+      - revert-migrations: 
+          id: ${CIRCLE_WORKFLOW_ID:0:7}
       - persist_to_workspace:
           root: ~/project
           paths:
@@ -288,6 +290,8 @@ jobs:
           workflow_id: s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}
       - destroy-environment:
           workflow_id: udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}    
+      - revert-migrations: 
+          id: ${CIRCLE_WORKFLOW_ID:0:7}
                     
   deploy-backend:
     docker:
@@ -348,6 +352,8 @@ jobs:
           workflow_id: s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}
       - destroy-environment:
           workflow_id: udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}  
+      - revert-migrations: 
+          id: ${CIRCLE_WORKFLOW_ID:0:7}
 
   smoke-test:
     docker:
@@ -399,6 +405,8 @@ jobs:
           workflow_id: s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}
       - destroy-environment:
           workflow_id: udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7} 
+      - revert-migrations: 
+          id: ${CIRCLE_WORKFLOW_ID:0:7}
 
 #   cloudfront-update:
 #     docker:
