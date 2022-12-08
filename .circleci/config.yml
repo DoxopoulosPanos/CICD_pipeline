@@ -204,7 +204,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["71:bf:46:f9:5a:1b:2d:f9:44:27:c3:55:b0:1f:ce:00"] 
+          fingerprints: ["d1:b7:32:82:1b:89:dd:a1:3a:03:4a:cb:09:82:61:f6"] 
       - run:
           name: get current path
           command: |
