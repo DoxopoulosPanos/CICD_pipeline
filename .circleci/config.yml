@@ -443,6 +443,18 @@ jobs:
           command: |
             curl -fsSL https://rpm.nodesource.com/setup_16.x | bash - && yum -y install nodejs
       - run:
+          name: export OldWorkflowID
+          command: |
+            export OldWorkflowID=$(aws cloudformation \
+                    list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
+                    --no-paginate --output text)
+            mkdir -p /tmp/workspace
+            echo "export OldWorkflowID=\"$OldWorkflowID\"" >> /tmp/workspace/env_vars
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - /tmp/workspace/env_vars
+      - run:
           name: Update cloudfront distribution
           command: |
             aws cloudformation deploy \
@@ -463,14 +475,13 @@ jobs:
     docker:
       - image: amazon/aws-cli
     steps:
-      # Checkout code from git
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
       - run:
           name: Get old stack workflow id
           command: |
-            # Fetch the Old workflow ID
-            export OldWorkflowID=$(aws cloudformation \
-                    list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
-                    --no-paginate --output text)
+            source /tmp/workspace/env_vars
             echo OldWorkflowID: "${OldWorkflowID}"
             echo CIRCLE_WORKFLOW_ID "${CIRCLE_WORKFLOW_ID:0:7}"
       # - run:
