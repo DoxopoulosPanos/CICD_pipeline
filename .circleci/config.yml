@@ -439,14 +439,14 @@ jobs:
             else
               return 1
             fi
-      - destroy-environment:
-          workflow_id: udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
-      - destroy-s3-bucket: 
-          workflow_id: s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}
-      - destroy-environment:
-          workflow_id: udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7} 
-      - revert-migrations: 
-          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+      # - destroy-environment:
+      #     workflow_id: udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
+      # - destroy-s3-bucket: 
+      #     workflow_id: s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}
+      # - destroy-environment:
+      #     workflow_id: udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7} 
+      # - revert-migrations: 
+      #     workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
 
   cloudfront-update:
     docker:
